@@ -25,14 +25,14 @@ declare namespace T {
 
   interface PolylineToolEvents {
     /** 用户双击完成一次折线绘制时触发事件 */
-    draw(e: PolylineToolEvent);
+    draw: (e: PolylineToolEvent) => void;
     /** 用户在多边形绘制过程中，每次点击底图添加节点时触发事件 */
-    addpoint(e: PolylineToolEvent);
+    addpoint: (e: PolylineToolEvent) => void;
   }
 
   interface PolylineToolEvent extends ToolEvent<Polyline> {
     /** 用户当前绘制的折线的点坐标数组 */
-    currentLnglats: LngLat;
+    currentLnglats: LngLat[];
     /** 用户当前绘制的折线的地理长度 */
     currentDistance: number;
     /** 当前测距所画线的对象 */
