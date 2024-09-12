@@ -1,3 +1,18 @@
+enum TransitRouteResultCode {
+  NORMAL = 0,
+  START_NOT_FOUND = 1,
+  END_NOT_FOUND = 2,
+  NO_ROUTE = 3,
+  TOO_CLOSE = 4,
+  CLOSE_ENOUGH = 5,
+  INVALID_PARAMS = 6,
+}
+enum TransitRouteSegmentType {
+  WALKING = 1,
+  BUS = 2,
+  SUBWAY = 3,
+  SUBWAY_TRANSFER = 4,
+}
 declare namespace T {
   class TransitRoute {
     /** 创建一个公交导航实例，用于获取公交路线规划方案 */
@@ -12,7 +27,7 @@ declare namespace T {
     /** 设置路线规划策略，参数为策略常量 */
     setPolicy(policy: TransitRouteOptions["policy"]): void;
     /** 设置检索结束后的回调函数 */
-    setSearchCompleteCallback(fun: (result: TransitRouteResult) => void): void;
+    setSearchCompleteCallback(callback: (result: TransitRouteResult) => void): void;
     /** 返回状态码 */
     getStatus(): TransitRouteResult["resultCode"];
   }
@@ -43,7 +58,7 @@ declare namespace T {
      * 5表示起终点距离500米内，返回线路；
      * 6表示输入参数错误
      */
-    resultCode: number;
+    resultCode: TransitRouteResultCode;
     results: {
       lineType: TransitRouteOptions["policy"];
       lines: {
@@ -91,7 +106,7 @@ declare namespace T {
      * 3表示地铁；
      * 4表示地铁站内换乘
      */
-    getSegmentType: () => number;
+    getSegmentType: () => TransitRouteSegmentType;
     /** 返回起站点信息 */
     getStationStart: () => Station;
     /** 返回终站点信息 */

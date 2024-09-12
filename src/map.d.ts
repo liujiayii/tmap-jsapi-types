@@ -190,7 +190,7 @@ declare namespace T {
     removeEventListener<EE extends keyof MapEvents>(event: EE, handler: MapEvents[EE]): void;
   }
 
-  type MapOptions = {
+  interface MapOptions {
     /** 指定地图的投影方式，目前支持的地图投影方式有：EPSG:900913(墨卡托投影)，EPSG:4326(大地平面投影) */
     projection?: string;
     /** 地图允许展示的最小级别 */
@@ -203,73 +203,73 @@ declare namespace T {
     center?: LngLat;
     /** 地图的初始化级别 */
     zoom?: number;
-  };
+  }
 
-  type MapEvents = {
+  interface MapEvents {
     /** 左键单击地图时触发此事件 */
-    click(e: MapEvent): void;
+    click: (e: MapEvent) => void;
     /** 鼠标双击地图时会触发此事件 */
-    dblclick(e: MapEvent): void;
+    dblclick: (e: MapEvent) => void;
     /** 右键单击地图时触发此事件 */
-    contextmenu(e: MapEvent): void;
+    contextmenu: (e: MapEvent) => void;
     /** 鼠标在地图区域移动过程中触发此事件 */
-    mousemove(e: MapEvent): void;
+    mousemove: (e: MapEvent) => void;
     /** 鼠标移入地图区域时触发此事件 */
-    mouseover(e: MapEvent): void;
+    mouseover: (e: MapEvent) => void;
     /** 鼠标移出地图区域时触发此事件 */
-    mouseout(e: MapEvent): void;
+    mouseout: (e: MapEvent) => void;
     /** 地图移动开始时触发此事件 */
-    movestart(e: MapEventBase): void;
+    movestart: (e: MapEventBase) => void;
     /** 地图移动过程中触发此事件 */
-    move(e: MapEventBase): void;
+    move: (e: MapEventBase) => void;
     /** 地图移动结束时触发此事件 */
-    moveend(e: MapEventBase): void;
+    moveend: (e: MapEventBase) => void;
     /** 地图更改缩放级别开始时触发触发此事件 */
-    zoomstart(e: MapEventBase): void;
+    zoomstart: (e: MapEventBase) => void;
     /** 地图更改缩放级别结束时触发触发此事件 */
-    zoomend(e: MapEventBase): void;
+    zoomend: (e: MapEventBase) => void;
     /** 当使用Map.addOverlay()方法向地图中添加单个覆盖物时会触发此事件 */
-    addoverlay(e: MapEventBase & { addoverlay: Overlay }): void;
+    addoverlay: (e: MapEventBase & { addoverlay: Overlay }) => void;
     /** 当使用Map.removeOverlay()方法移除单个覆盖物时会触发此事件 */
-    removeoverlay(e: MapEventBase & { removeoverlay: Overlay }): void;
+    removeoverlay: (e: MapEventBase & { removeoverlay: Overlay }) => void;
     /** 当使用Map.addControl()方法向地图中添加单个控件时会触发此事件 */
-    addcontrol(e: MapEventBase & { addcontrol: Control }): void;
+    addcontrol: (e: MapEventBase & { addcontrol: Control }) => void;
     /** 当使用Map.removeControl()方法移除单个控件时会触发此事件 */
-    removecontrol(e: MapEventBase & { removecontrol: Control }): void;
+    removecontrol: (e: MapEventBase & { removecontrol: Control }) => void;
     /** 当使用Map.clearOverlays()方法一次性移除全部覆盖物时会触发此事件 */
-    clearoverlays(e: MapEventBase): void;
+    clearoverlays: (e: MapEventBase) => void;
     /** 开始拖拽地图时触发 */
-    dragstart(e: MapEventBase): void;
+    dragstart: (e: MapEventBase) => void;
     /** 拖拽地图过程中触发 */
-    drag(e: MapEventBase): void;
+    drag: (e: MapEventBase) => void;
     /** 停止拖拽地图时触发 */
-    dragend(e: MapEventBase): void;
+    dragend: (e: MapEventBase) => void;
     /** 添加一个自定义地图图层时触发此事件 */
-    layeradd(e: MapEventBase & { layer: TileLayer }): void;
+    layeradd: (e: MapEventBase & { layer: TileLayer }) => void;
     /** 移除一个自定义地图图层时触发此事件 */
-    layerremove(e: MapEventBase & { layer: TileLayer }): void;
+    layerremove: (e: MapEventBase & { layer: TileLayer }) => void;
     /** 调用Map.centerAndZoom()方法时会触发此事件。这表示位置、缩放层级已经确定，但可能还在载入地图瓦片 */
-    load(e: MapEventBase): void;
+    load: (e: MapEventBase) => void;
     /** 地图可视区域大小发生变化时会触发此事件 */
-    resize(e: MapEventBase & { newSize: Point; oldSize: Point }): void;
+    resize: (e: MapEventBase & { newSize: Point; oldSize: Point }) => void;
     /** 调用setMinZoom和setMaxZoom时会触发此事件 */
-    levels(e: MapEventBase & { minZoom: number; maxZoom: number }): void;
+    levels: (e: MapEventBase & { minZoom: number; maxZoom: number }) => void;
     /** 触摸开始时触发此事件，仅适用移动设备 */
-    touchstart(e: MapEvent): void;
+    touchstart: (e: MapEvent) => void;
     /** 触摸移动时触发此事件，仅适用移动设备 */
-    touchmove(e: MapEvent): void;
+    touchmove: (e: MapEvent) => void;
     /** 触摸结束时触发此事件，仅适用移动设备 */
-    touchend(e: MapEvent): void;
+    touchend: (e: MapEvent) => void;
     /** 长按事件，仅适用移动设备 */
-    longpress(e: MapEvent): void;
-  };
+    longpress: (e: MapEvent) => void;
+  }
 
-  type MapEventBase = {
+  interface MapEventBase {
     /** 事件类型 */
     type: string;
     /** 地图对象 */
     target: Map;
-  };
+  }
 
   type MapEvent = {
     /** 经纬度坐标 */
@@ -278,7 +278,7 @@ declare namespace T {
     containerPoint: Point;
   } & MapEventBase;
 
-  type MapPanes = {
+  interface MapPanes {
     [x: string]: HTMLElement;
-  };
+  }
 }
