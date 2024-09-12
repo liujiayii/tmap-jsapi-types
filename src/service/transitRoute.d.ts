@@ -1,6 +1,6 @@
 declare namespace T {
   class TransitRoute {
-    /** 创建一个公交导航实例，用于获取公交路线规划方案*/
+    /** 创建一个公交导航实例，用于获取公交路线规划方案 */
     constructor(map: Map, opts: TransitRouteOptions);
 
     /** 发起检索 */
@@ -12,7 +12,7 @@ declare namespace T {
     /** 设置路线规划策略，参数为策略常量 */
     setPolicy(policy: TransitRouteOptions["policy"]): void;
     /** 设置检索结束后的回调函数 */
-    setSearchCompleteCallback(fun: Function): void;
+    setSearchCompleteCallback(fun: (result: TransitRouteResult) => void): void;
     /** 返回状态码 */
     getStatus(): TransitRouteResult["resultCode"];
   }
@@ -58,9 +58,9 @@ declare namespace T {
       }[];
     };
     /** 返回方案个数 */
-    getNumPlans(): number;
+    getNumPlans: () => number;
     /** 返回索引指定的方案。索引0表示第一条方案 */
-    getPlan(i: number): TransitRoutePlan;
+    getPlan: (i: number) => TransitRoutePlan;
   }
 
   interface TransitRoutePlan {
@@ -70,17 +70,17 @@ declare namespace T {
     LineType: number;
     NumSegments: number;
     /** 返回单个方案的详细信息段数 */
-    getNumSegments(): number;
+    getNumSegments: () => number;
     /** 返回索引指定的详细信息。索引0表示第一条方案 */
-    getDetails(i: number): TransitRouteLine;
+    getDetails: (i: number) => TransitRouteLine;
     /** 返回方案描述文本 */
-    getLineName(): string[];
+    getLineName: () => string[];
     /** 返回方案总距离 */
-    getDistance(): number;
+    getDistance: () => number;
     /** 返回方案总时间 */
-    getDuration(): number;
+    getDuration: () => number;
     /** 返回公交导航的策略参数 */
-    getLineType(): number;
+    getLineType: () => number;
   }
 
   interface TransitRouteLine {
@@ -91,13 +91,13 @@ declare namespace T {
      * 3表示地铁；
      * 4表示地铁站内换乘
      */
-    getSegmentType(): number;
+    getSegmentType: () => number;
     /** 返回起站点信息 */
-    getStationStart(): Station;
+    getStationStart: () => Station;
     /** 返回终站点信息 */
-    getStationEnd(): Station;
+    getStationEnd: () => Station;
     /** 返回线路内容 */
-    getSegmentLine(): SegmentLine;
+    getSegmentLine: () => SegmentLine;
   }
 
   interface Station {

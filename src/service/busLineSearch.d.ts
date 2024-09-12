@@ -1,6 +1,14 @@
+interface GetBusListCallback {
+  (result: BusListResult): void;
+}
+
+interface GetBusLineCallback {
+  (result: BusLine): void;
+}
+
 declare namespace T {
   class BusLineSearch {
-    /** 创建一个公交导航实例，用于获取公交路线规划方案*/
+    /** 创建一个公交导航实例，用于获取公交路线规划方案 */
     constructor(map: Map, opts: BusLineSearchOptions);
 
     /** 检索公交信息 */
@@ -8,9 +16,9 @@ declare namespace T {
     /** 检索公交路线 */
     getBusLine(busListItem: BusListItem): void;
     /** 设置公交列表查询后的回调函数 */
-    setGetBusListCompleteCallback(callback: Function): void;
+    setGetBusListCompleteCallback(callback: GetBusListCallback): void;
     /** 设置公交线路查询后的回调函数 */
-    setGetBusLineCompleteCallback(callback: Function): void;
+    setGetBusLineCompleteCallback(callback: GetBusLineCallback): void;
   }
 
   interface BusLineSearchOptions {

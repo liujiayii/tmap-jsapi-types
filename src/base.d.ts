@@ -15,7 +15,7 @@ declare namespace T {
     /** 获取地理坐标点的经度 */
     getLat(): number;
     /** 计算当前地理坐标点与给定坐标点之间的距离 */
-    distanceTo(lnglat: LngLat): boolean;
+    distanceTo(lngLat: LngLat): number;
     /** 判断坐标点是否相等，当且仅当两点的经度和纬度均相等时返回true */
     equals(other: LngLat): boolean;
   }
@@ -54,7 +54,7 @@ declare namespace T {
     y: number;
     /** 判断坐标点是否相等，当且仅当两点的x坐标和y坐标均相等时返回true */
     equals(point: Point): boolean;
-    /**获得当前点与给定点的距离 */
+    /** 获得当前点与给定点的距离 */
     distanceTo(point: Point): number;
   }
 
@@ -74,9 +74,9 @@ declare namespace T {
     getLayers(): Overlay[];
     /** 清除容器中的所有图层 */
     clearLayers(): void;
-    /**设置容器z-index值 */
-    setZIndex(): void;
-    /**通过ID获取其对应的图层 */
+    /** 设置容器z-index值 */
+    setZIndex(zIndex: number): void;
+    /** 通过ID获取其对应的图层 */
     getLayer(id: string): Overlay;
     /** 获取容器中存在图层的唯一ID */
     getLayerId(layer: Overlay): string;
@@ -85,9 +85,9 @@ declare namespace T {
   class MapType {
     /** 创建TMapType对象实例 */
     constructor(layers: TileLayer[], name: string);
-    /**	返回地图类型名称 */
+    /** 返回地图类型名称 */
     getName(): string;
     /** 返回地图类型对应的图层 */
-    getLayers(): MapType;
+    getLayers(): TileLayer[];
   }
 }

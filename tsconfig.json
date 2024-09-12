@@ -4,7 +4,7 @@
     "lib": ["esnext"],
     "baseUrl": "./",
     "module": "esnext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "Node",
     "resolveJsonModule": true,
     "strict": true,
     "importHelpers": true,
