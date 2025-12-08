@@ -3,8 +3,9 @@ type GeocoderGetLocationCallback = (result: GeocoderResult) => void;
 type GeocoderGetPointCallback = (result: GeocoderResult) => void;
 
 declare namespace T {
+
   class Geocoder {
-    /** 创建一个地址解析器的实例。 */
+    /** 创建一个地址解析器的实例。此类用于获取用户的地址解析 */
     constructor();
 
     /** 对指定的坐标点进行反地址解析。如果解析成功，则回调函数的参数为GeocoderResult对象。 */
@@ -125,4 +126,5 @@ declare namespace T {
     poi_position: string;
 
   }
+
 }
