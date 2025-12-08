@@ -1,9 +1,4 @@
-type GeocoderGetLocationCallback = (result: GeocoderResult) => void;
-
-type GeocoderGetPointCallback = (result: GeocoderResult) => void;
-
 declare namespace T {
-
   class Geocoder {
     /** 创建一个地址解析器的实例。此类用于获取用户的地址解析 */
     constructor();
@@ -16,26 +11,25 @@ declare namespace T {
   }
 
   /** 此类表示Geocoder的地址解析结果。它在地址解析的回调函数的参数中返回，不可实例化。 */
-  class GeocoderResult {
-    constructor();
+  interface GeocoderResult {
 
     /** 返回响应结果。 */
-    getStatus(): number;
+    getStatus: () => number;
 
     /** 返回响应信息。 */
-    getMsg(): string;
+    getMsg: () => string;
 
     /** 获取此点坐标。 */
-    getLocationPoint(): LngLat;
+    getLocationPoint: () => LngLat;
 
     /** 获取详细地址。 */
-    getAddress(): string | null;
+    getAddress: () => string | null;
 
     /** 获取此点的详细信息。 */
-    getAddressComponent(): AddressComponent;
+    getAddressComponent: () => AddressComponent;
 
     /** 获取此点类别。 */
-    getLocationLevel(): string | undefined;
+    getLocationLevel: () => string | undefined;
   }
 
   /** 此类表示地址解析结果的层次化地址信息，没有构造函数，通过对象字面量形式表示。 */
@@ -126,5 +120,9 @@ declare namespace T {
     poi_position: string;
 
   }
+
+  type GeocoderGetLocationCallback = (result: GeocoderResult) => void;
+
+  type GeocoderGetPointCallback = (result: GeocoderResult) => void;
 
 }

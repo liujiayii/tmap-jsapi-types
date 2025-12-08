@@ -1,5 +1,3 @@
-type GeolocationGetLocationCallback = (result: GeolocationResult) => void;
-
 declare namespace T {
   class Geolocation {
     /** 创建Geolocation对象实例。返回用户当前的位置。此方法利用浏览器的geolocation接口获取用户当前位置，不支持的浏览器将无法获取。 */
@@ -15,7 +13,7 @@ declare namespace T {
     getStatus(): GeolocationStatusCode | undefined;
 
     /** 返回用户当前位置。当定位成功时，回调函数的参数为GeolocationResult对象，否则为null。 */
-    getCurrentPosition(callback: GeolocationGetLocationCallback, options: GeolocationOptions): void;
+    getCurrentPosition(callback: GeolocationGetLocationCallback, options?: GeolocationOptions): void;
   }
 
   /** H5定位返回结果的对象 */
@@ -32,13 +30,13 @@ declare namespace T {
   interface GeolocationOptions {
 
     /** 要求浏览器获取最佳结果。 */
-    enableHighAccuracy: boolean;
+    enableHighAccuracy?: boolean;
 
     /** 允许返回指定时间内的缓存结果。如果此值为0，则浏览器将立即获取新定位结果。 */
-    maximumAge: number;
+    maximumAge?: number;
 
     /** 超时时间。 */
-    timeout: number;
+    timeout?: number;
   }
 
   /** 返回状态码 */
@@ -49,5 +47,7 @@ declare namespace T {
     TDT_STATUS_PERMISSION_DENIED = 3,
     TDT_STATUS_UNKNOWN_ERROR = 5,
   }
+
+  type GeolocationGetLocationCallback = (result: GeolocationResult | null) => void;
 
 }

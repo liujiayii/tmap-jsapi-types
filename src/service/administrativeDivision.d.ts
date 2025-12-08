@@ -68,8 +68,6 @@ interface AdministrativeDivisionData {
 
 };
 
-type AdministrativeDivisionSearchCallback = (result: AdministrativeDivisionResult) => void;
-
 declare namespace T {
   class AdministrativeDivision {
     /** 创建一个获取行政区划的实例。此类用于获取行政区划信息。 */
@@ -77,8 +75,8 @@ declare namespace T {
 
     /**
      * 根据检索词发起检索。参数说明：
-     * @param config：详见AdministrativeDivisionOptions类。
-     * @param callback：设置回调函数。
+     * config：详见AdministrativeDivisionOptions类。
+     * callback：设置回调函数。
      * 回调函数参数为AdministrativeDivisionResult，具体内容详见AdministrativeDivisionResult类。
      */
     search(config: AdministrativeDivisionOptions, callback: AdministrativeDivisionSearchCallback): void;
@@ -120,6 +118,9 @@ declare namespace T {
 
     /** 返回行政区划数据信息。文档说明有误，文档为string，实为一个对象。 */
     getData: () => AdministrativeDivisionData | null;
+
   }
+
+  type AdministrativeDivisionSearchCallback = (result: AdministrativeDivisionResult) => void;
 
 }

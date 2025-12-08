@@ -1,5 +1,3 @@
-type DataSourcesSearchCallback = (result: any) => void;
-
 declare namespace T {
   class DataSources {
     /** 创建一个获取数据来源的实例。此类用于获取地图数据来源信息。 */
@@ -28,5 +26,7 @@ declare namespace T {
     projection: string;
 
   }
+
+  type DataSourcesSearchCallback = (result: any) => void;
 
 }
